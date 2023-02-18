@@ -12,8 +12,6 @@ import { toast } from "react-toastify";
 
 export const login = (dispatch, payload) => {
   payload.preventDefault();
-  console.log("in login action");
-  console.log(payload.target.email.value);
   const user = {
     email: payload.target.email.value,
     password: payload.target.password.value,
@@ -36,9 +34,41 @@ export const login = (dispatch, payload) => {
           }
         )
         .then((res) => {
-          console.log(res.data);
           dispatch(loginSuccess(res.data));
-          toast.success(`Welcome ${res.data.name} to scanner`);
+          toast.success(`Welcome ${res.data.userName} to scanner`);
+        })
+        .catch((err) => {
+          dispatch(authFail(err.response.data));
+          toast.error(err.response.data);
+        });
+    }
+  } catch (err) {
+    dispatch(authFail(err.response.data));
+    toast.error(err.response.data);
+  }
+};
+
+export const signup = (dispatch, payload) => {
+  try {
+    payload.preventDefault();
+    const userInfo = {
+      userName: payload.target.userName.value,
+      email: payload.target.email.value,
+      password: payload.target.password.value,
+      PhoneNumber: payload.target.phone.value,
+      userAddress: payload.target.location.value,
+    };
+    console.log(userInfo);
+    if (payload.error) {
+      dispatch(authFail(payload.error));
+    } else {
+      dispatch(authRequest());
+      axios
+        .post("http://localhost:8080/signup", userInfo)
+        .then((res) => {
+          console.log(res.data);
+          dispatch(signupSuccess(res.data));
+          toast.success(`Welcome ${res.data.userName} to scanner`);
         })
         .catch((err) => {
           console.log(err.response.data);
