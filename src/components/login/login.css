@@ -20,7 +20,11 @@
   text-align: center;
   animation: change-background 20s infinite;
 }
-
+@media (max-width: 992px) {
+  .background {
+    flex-basis: 100%;
+  }
+}
 .background::after {
   content: "";
   position: absolute;
@@ -55,11 +59,21 @@
   padding-bottom: 50px;
 }
 
+@media (max-width: 992px) {
+  .form-login {
+    flex-basis: 100%;
+  }
+}
+
 .form-login h1 {
   font-size: 2rem;
   font-weight: 600;
   color: #333;
   margin-bottom: 20px;
+}
+
+.form-login form {
+  max-width: 80%;
 }
 
 .form-login input {

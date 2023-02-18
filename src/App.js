@@ -4,6 +4,7 @@ import Signup from "./components/signup/Signup";
 import Items from "./components/items/Items";
 import Scanner from "./components/scanner/Scanner";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (

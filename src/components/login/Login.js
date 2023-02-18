@@ -4,7 +4,7 @@ import "./login.css";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../store/actions/authAction";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 function Login() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.auth.loading);
@@ -20,7 +20,7 @@ function Login() {
       <div className="form-login">
         <h1>Login</h1>
         <form onSubmit={(e) => login(dispatch, e)}>
-          <input type="email" name="email" placeholder="Email" />
+          <input type="text" name="email" placeholder="User Name Or Email" />
           <input type="password" name="password" placeholder="Password" />
           <button type="submit">{loading ? "Loading..." : "Login"}</button>
         </form>
